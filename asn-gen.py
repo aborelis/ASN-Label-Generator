@@ -21,7 +21,9 @@ PROJECT_HOMEPAGE = "https://github.com/aborelis/ASN-Label-Generator"
 
 
 class LabelContext:
-
+    
+    # pylint: disable=too-many-instance-attributes
+    
     def __init__(self, data):
 
         self.filename = None
@@ -54,7 +56,8 @@ class LabelContext:
 
         self.current_asn = self.first_asn
 
-    def incASN(self):
+    def inc_asn(self):
+        """increase current asn count """
         self.current_asn = self.current_asn + 1
 
 
@@ -76,7 +79,7 @@ def render(context: LabelContext, c: canvas.Canvas, width: float, height: float)
             barcode_value = context.prefix + str(context.current_asn).zfill(
                 context.num_digits
             )
-            context.incASN()
+            context.inc_asn()
 
             qr = QRCodeImage(barcode_value, size=sub_labelheight * context.qr_size)
             qr.drawOn(
@@ -125,6 +128,8 @@ def render(context: LabelContext, c: canvas.Canvas, width: float, height: float)
 
             c.restoreState()
 
+
+# pylint: disable=too-many-locals
 
 def generate(
     filename=None,
