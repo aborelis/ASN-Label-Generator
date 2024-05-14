@@ -129,7 +129,7 @@ def render(context: LabelContext, c: canvas.Canvas, width: float, height: float)
             c.restoreState()
 
 
-# pylint: disable=too-many-locals
+
 
 def generate(
     filename=None,
@@ -151,7 +151,8 @@ def generate(
     highlight_bar_width: "hw" = 0,  # type: ignore
     highlight_bar_color: "hc" = "d9a4a6",  # type: ignore
     prefix: "p" = "ASN",  # type: ignore
-):
+): # pylint: disable=too-many-locals
+     # pylint: disable=unused-argument
     """ASN Label Generator
 
     :param filename: output filename of PDF file generated
