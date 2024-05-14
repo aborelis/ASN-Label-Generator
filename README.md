@@ -48,17 +48,13 @@ Besides generating ASN labels with a QR Code the tool can also
 
 # Getting started
 
-You'll need Python 3 on your system.
-
-To install all dependencies use 
-
-`` pip install -r requirements.txt `` 
-
-# Usage
+## Usage
 
 This tool is hightly flexible, almost all parameters can be controlled from the command line.
 
 Other Avery (or competitor's) label sizes can be added to `labelInfo` in `AveryLabels.py`. 
+
+You can install Python all dependencies yourself or use Docker.
 
 
 ```
@@ -101,7 +97,15 @@ _**Recommendation:** do test prints on normal paper before printing to the actua
 
 _**Note**: Make sure to set print size to 100%, not fit to page or similar._
 
-### Running the program from CLI
+
+## Running the program from CLI
+
+You'll need Python 3 on your system.
+
+To install all dependencies use 
+
+`` pip install -r requirements.txt `` 
+
 Depending on your configuration either use
 
 `` ./asn-gen.py ... ``
@@ -110,11 +114,19 @@ or
 
 `` python3 asn-gen.py ... ``
 
-### Running the program from Docker
+## Running the program from Docker
+
+If you don't want to install python and the dependencies on your machine you can use Docker.
+There is a handy bash script :
+
+`` ./ag-docker.sh <output directory> [normal parameters to asn-gen.py] ``
+
+e.g. `` ./ag-docker.sh $(pwd)/out -s 500001 ``
+
+_Note: when using docker you cannot specify the output filename. Instead the default scheme will be used._
 
 
-
-### Output Filename
+## Output Filename Scheme
 If the filename is omitted the output defaults to
 
 `` label-<labeltype>-<prefix>-<first-asn>-<first-asn+number>.pdf ``
