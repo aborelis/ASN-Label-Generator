@@ -33,12 +33,12 @@ Besides generating ASN labels with a QR Code the tool can also
     ![Label with highlight bar](docs/label-with-hbar.png)
 
 
-### Example usage of ASN with colors:
+### Example usage of ASN labels with colors:
 
 | number ranges | Meaning                                | Color      |
 | ------------ | --------------------------------------- | ---------- |
 | 000000       | Me - normal docs (shorter term storage) | blue       |
-| 100000       | Me - imporatant / (long term storage)   | blue/red   |
+| 100000       | Me - imporatant  (long term storage)    | blue/red   |
 | 200000       | Wife - normal                           | green      |
 | 300000       | Wife - important                        | green/red  |
 | 400000       | Child 1 - normal                        | yellow     |
@@ -62,6 +62,7 @@ Other Avery (or competitor's) label sizes can be added to `labelInfo` in `AveryL
 
 
 ```
+$ ./asn-gen.py -h
 Usage: asn-gen.py [OPTIONS] [filename]
 
 ASN Label Generator
@@ -100,7 +101,7 @@ _**Recommendation:** do test prints on normal paper before printing to the actua
 
 _**Note**: Make sure to set print size to 100%, not fit to page or similar._
 
-### Running the program
+### Running the program from CLI
 Depending on your configuration either use
 
 `` ./asn-gen.py ... ``
@@ -108,6 +109,10 @@ Depending on your configuration either use
 or 
 
 `` python3 asn-gen.py ... ``
+
+### Running the program from Docker
+
+
 
 ### Output Filename
 If the filename is omitted the output defaults to

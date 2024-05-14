@@ -105,7 +105,8 @@ class AveryLabel:
         """ render loop"""
         assert callable(thing) or isinstance(thing, str)
         if isinstance(count, Iterator):
-            return self.render_iterator(thing, count)
+            self.render_iterator(thing, count)
+            return
 
         canv = self.canvas
         for i in range(offset + count):

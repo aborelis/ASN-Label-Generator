@@ -2,6 +2,7 @@
 
 from functools import partial
 
+import os
 
 from reportlab.lib.units import mm
 from reportlab.lib.units import toLength
@@ -21,6 +22,8 @@ PROJECT_HOMEPAGE = "https://github.com/aborelis/ASN-Label-Generator"
 
 
 class LabelContext:
+
+    """helper class to store context """
     
     # pylint: disable=too-many-instance-attributes
     
@@ -129,6 +132,13 @@ def render(context: LabelContext, c: canvas.Canvas, width: float, height: float)
             c.restoreState()
 
 
+def gen_filename(parm):
+    """generates filename from parameters"""
+    return '-'.join(['label',
+                     str(parm["labeltype"]), parm["prefix"],
+                     str(parm["first_asn"]).zfill(parm["num_digits"]),
+                     str(parm["first_asn"] + parm["number"]).zfill(parm["num_digits"])
+                     ])+'.pdf'
 
 
 def generate(
@@ -155,7 +165,7 @@ def generate(
      # pylint: disable=unused-argument
     """ASN Label Generator
 
-    :param filename: output filename of PDF file generated
+    :param filename: output filename of PDF file generated, if .pdf extension is missing the string will be used as directory
     :param labeltype: Type of label, e.g. 4731, get a list of supported labels with --labels
     :param number: number of labels to generate
 
@@ -193,14 +203,11 @@ def generate(
     parm["labeltype"] = int(parm["labeltype"])
 
     if parm["filename"] is None:
-        parm["filename"] = (
-            "label-"
-            + str(parm["labeltype"])+ "-"
-            + parm["prefix"]+ "-"
-            + str(parm["first_asn"]).zfill(parm["num_digits"])+ "-"
-            + str(parm["first_asn"] + parm["number"]).zfill(parm["num_digits"])
-            + ".pdf"
-        )
+        parm["filename"] = gen_filename(parm)
+    elif not parm["filename"].endswith(".pdf"):
+        parm["filename"] = os.path.join(parm["filename"], gen_filename(parm))
+
+        
 
     context = LabelContext(parm)
 
