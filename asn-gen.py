@@ -2,8 +2,7 @@
 
 from functools import partial
 
-import AveryLabels
-from AveryLabels import labelInfo
+
 from reportlab.lib.units import mm
 from reportlab.lib.units import toLength
 from reportlab.pdfgen import canvas
@@ -14,8 +13,11 @@ from reportlab_qrcode import QRCodeImage
 
 from clize import run
 
+import AveryLabels
+from AveryLabels import labelInfo
 
-project_homepage = "https://github.com/aborelis/ASN-Label-Generator"
+
+PROJECT_HOMEPAGE = "https://github.com/aborelis/ASN-Label-Generator"
 
 
 class LabelContext:
@@ -57,6 +59,7 @@ class LabelContext:
 
 
 def render(context: LabelContext, c: canvas.Canvas, width: float, height: float):
+    """ renders one label onto the provided canvas. To be used with AveryLabel. """
 
     sub_label_width = width / context.sub_labels_x
     sub_labelheight = height / context.sub_labels_y
@@ -215,10 +218,11 @@ def labels():
 
 def version():
     """Show the version"""
-    return "ASN Label Generator - version 0.1 \n" + project_homepage
+    return "ASN Label Generator - version 0.1 \n" + PROJECT_HOMEPAGE
 
 
 def main():
+    """Main function - entry point"""
     run(generate, alt=[labels, version])
 
 
