@@ -9,7 +9,7 @@ This is a tool to create ASN Labels to use for document management systems such 
 This Python based CLI tool outputs a PDF for printing on the label sheets. 
 
 
-# Features
+## Features
 
 Besides generating ASN labels with a QR Code the tool can also
 
@@ -46,9 +46,9 @@ Besides generating ASN labels with a QR Code the tool can also
 | ...          | ...                                     | ...        |
 
 
-# Getting started
+## Getting started
 
-## Usage
+### Usage
 
 This tool is hightly flexible, almost all parameters can be controlled from the command line.
 
@@ -91,14 +91,14 @@ Other actions:
   --version                         Show the version
 ```
 
-### Testing your printer settings
+#### Testing your printer settings
 Use ``--debug`` and ``--position-helper`` to test your printer settings.  
 _**Recommendation:** do test prints on normal paper before printing to the actual label sheets._
 
 _**Note**: Make sure to set print size to 100%, not fit to page or similar._
 
 
-## Running the program from CLI
+### Running the program from CLI
 
 You'll need Python 3 on your system.
 
@@ -114,7 +114,7 @@ or
 
 `` python3 asn-gen.py ... ``
 
-## Running the program from Docker
+### Running the program from Docker
 
 If you don't want to install python and the dependencies on your machine you can use Docker.
 There is a handy bash script :
@@ -126,7 +126,7 @@ e.g. `` ./ag-docker.sh $(pwd)/out -s 500001 ``
 _Note: when using docker you cannot specify the output filename. Instead the default scheme will be used._
 
 
-## Output Filename Scheme
+### Output Filename Scheme
 If the filename is omitted the output defaults to
 
 `` label-<labeltype>-<prefix>-<first-asn>-<first-asn+number>.pdf ``
@@ -137,8 +137,7 @@ e.g.
 
 
 
-
-# Examples
+## Examples
 
 
 ### List supported labels
@@ -179,6 +178,6 @@ _Output filename: label-5161-ASN-000001-000021.pdf_
 
 
 
-# Credits
+## Credits
 
 This project is based on [work by gitolicious](https://github.com/gitolicious/avery-asn/tree/main) but was heavily modified to support CLI and some additional features. That project itself is based on the [work from timrprobocom](https://gist.github.com/timrprobocom/3946aca8ab75df8267bbf892a427a1b7)
