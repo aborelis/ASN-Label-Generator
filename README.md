@@ -54,7 +54,7 @@ This tool is hightly flexible, almost all parameters can be controlled from the 
 
 Other Avery (or competitor's) label sizes can be added to `labelInfo` in `AveryLabels.py`. 
 
-You can install Python all dependencies yourself or use Docker.
+You can install Python and all dependencies yourself or use Docker.
 
 
 ```
