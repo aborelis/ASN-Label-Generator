@@ -17,7 +17,7 @@ Besides generating ASN labels with a QR Code the tool can also
   _This is helpful for small label sizes even though your physical label cutout sizes are bigger._
 
 * support custom number ranges  
-    _This can be useful if you want to use different folders and number ranges for yourself (ASN**0**0001), your partner ASN**2**0001, your kids (ASN**4**0001), etc._
+    _This can be useful if you want to use different folders and number ranges for yourself (e.g. ASN**0**0001), your partner (ASN**2**0001), your kids (ASN**4**0001), etc._
     
 * add a color bar to the side of the labels to allow easier visual identification where the label belongs to  
     _I use expandable folders with different colors to store the physical documents for me, my wife and the kids, i.e. one color per person_  
