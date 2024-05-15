@@ -37,14 +37,15 @@ Besides generating ASN labels with a QR Code the tool can also
 
 | number ranges | Meaning                                | Color      |
 | ------------ | --------------------------------------- | ---------- |
-| 000000       | Me - normal docs (shorter term storage) | blue       |
-| 100000       | Me - imporatant  (long term storage)    | blue/red   |
-| 200000       | Wife - normal                           | green      |
-| 300000       | Wife - important                        | green/red  |
-| 400000       | Child 1 - normal                        | yellow     |
-| 500000       | Child 1 - important                     | yellow/red |
+| 000000       | Person 1 - normal docs (shorter term storage) | blue       |
+| 100000       | Person 1 - important  (long term storage)    | blue/red   |
+| 200000       | Person 2 - normal                           | green      |
+| 300000       | Person 2 - important                        | green/red  |
+| 400000       | Person 3 - normal                        | yellow     |
+| 500000       | Person 3 - important                     | yellow/red |
 | ...          | ...                                     | ...        |
 
+Colors give a nice visual hint on where a document belongs to.
 
 ## Getting started
 
@@ -98,7 +99,7 @@ _**Recommendation:** do test prints on normal paper before printing to the actua
 _**Note**: Make sure to set print size to 100%, not fit to page or similar._
 
 
-### Running the program from CLI
+### Running from CLI
 
 You'll need Python 3 on your system.
 
@@ -114,14 +115,14 @@ or
 
 `` python3 asn-gen.py ... ``
 
-### Running the program from Docker
+### Running with Docker
 
 If you don't want to install python and the dependencies on your machine you can use Docker.
 There is a handy bash script :
 
 `` ./ag-docker.sh <output directory> [normal parameters to asn-gen.py] ``
 
-e.g. `` ./ag-docker.sh $(pwd)/out -s 500001 ``
+e.g. `` ./ag-docker.sh $(pwd)/out -s 500001 `` or `` ./ag-docker.sh ./ -s 500001 ``
 
 _Note: when using docker you cannot specify the output filename. Instead the default scheme will be used._
 
