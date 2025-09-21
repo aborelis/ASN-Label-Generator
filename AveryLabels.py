@@ -22,6 +22,8 @@ from reportlab.lib.units import mm, cm
 # page size w/h or name from reportlab.lib.pagesizes
 
 labelInfo = {
+    # 24x 70mm x 37mm on A4 with 3x8
+    6605: (3, 8, (70 * mm, 37 * mm), (0, 0), (0, 0), A4),
     # 22x 32mm x 10mm mini labels
     3044: (2, 11, (32, 10), (2, 2), (1, 1), (66.5 * mm, 120.5 * mm)),
     # 189x 25.4mm x 10mm mini labels
