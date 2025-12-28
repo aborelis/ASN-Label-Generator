@@ -141,7 +141,7 @@ def gen_filename(parm):
     return '-'.join(['label',
                      str(parm["labeltype"]), parm["prefix"],
                      str(parm["first_asn"]).zfill(parm["num_digits"]),
-                     str(parm["first_asn"] + parm["number"]).zfill(parm["num_digits"])
+                     str(parm["first_asn"] + parm["number"] - 1).zfill(parm["num_digits"])
                      ])+'.pdf'
 
 
