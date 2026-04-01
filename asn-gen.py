@@ -55,6 +55,9 @@ class LabelContext:
         self.highlight_bar_color = HexColor("#d9a4a6")
         self.prefix = "ASN"
 
+        self.page_offset_x = 0 * mm
+        self.page_offset_y = 0 * mm
+
         self.__dict__.update(data)
 
         self.current_asn = self.first_asn
@@ -84,13 +87,14 @@ def render(context: LabelContext, c: canvas.Canvas, width: float, height: float)
             )
             context.inc_asn()
 
-            qr = QRCodeImage(barcode_value, size=sub_labelheight * context.qr_size)
+            qr_width = min(sub_labelheight * context.qr_size, sub_labelheight - 2 * context.qr_margin)
+            qr = QRCodeImage(barcode_value, size=qr_width, border=0)
             qr.drawOn(
-                c, x=context.qr_margin, y=sub_labelheight * ((1 - context.qr_size) / 2)
+                c, x=context.qr_margin, y=(sub_labelheight - qr_width) / 2
             )
             c.setFont("Helvetica", size=context.font_size)
             c.drawString(
-                x=sub_labelheight,
+                x= qr_width + 2 * context.qr_margin,
                 y=(sub_labelheight - context.font_size) / 2,
                 text=barcode_value,
             )
@@ -161,6 +165,8 @@ def generate(
     highlight_bar_width: "hw" = 0,  # type: ignore
     highlight_bar_color: "hc" = "d9a4a6",  # type: ignore
     prefix: "p" = "ASN",  # type: ignore
+    page_offset_x: "dx" = "0mm", # type: ignore
+    page_offset_y: "dy" = "0mm", # type: ignore
 ): # pylint: disable=too-many-locals
      # pylint: disable=unused-argument
     """ASN Label Generator
@@ -193,6 +199,9 @@ def generate(
 
     :param prefix: Prefix to the actual ASN number
 
+    :param page_offset_x: Print offset of the labels on the page to handle horizontal printer alignment with unit (e.g. -2mm)
+    :param page_offset_y: Print offset of the labels on the page to handle vertical printer alignment with unit (e.g. -1.5mm)
+
     """
 
     parm = locals()
@@ -201,6 +210,8 @@ def generate(
     parm["bar_color"] = HexColor("#" + parm["bar_color"])
     parm["highlight_bar_color"] = HexColor("#" + parm["highlight_bar_color"])
     parm["labeltype"] = int(parm["labeltype"])
+    parm["page_offset_x"] = toLength(parm["page_offset_x"])
+    parm["page_offset_y"] = toLength(parm["page_offset_y"])
 
     if parm["filename"] is None:
         parm["filename"] = gen_filename(parm)
@@ -211,7 +222,7 @@ def generate(
 
     context = LabelContext(parm)
 
-    label = AveryLabels.AveryLabel(context.labeltype)
+    label = AveryLabels.AveryLabel(context.labeltype, (context.page_offset_x, context.page_offset_y))
 
     label.debug = context.debug
 
@@ -226,8 +237,7 @@ def generate(
 
 def labels():
     """Shows a list of supported labels"""
-    print("Supported Labels: " + ", ".join(map(str, labelInfo.keys())))
-
+    print("Supported Labels: " + ", ".join(map(str, sorted(labelInfo.keys()))))
 
 def version():
     """Show the version"""

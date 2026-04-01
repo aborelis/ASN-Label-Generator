@@ -65,31 +65,38 @@ Usage: asn-gen.py [OPTIONS] [filename]
 ASN Label Generator
 
 Arguments:
-  filename                          output filename of PDF file generated
+  filename                    output filename of PDF file generated, if .pdf extension is missing the string will be used
+                              as directory
 
 Options:
-  -l, --labeltype=STR               Type of label, e.g. 4731, get a list of supported labels with --labels (default: 4731)
-  -n, --number=INT                  number of labels to generate (default: 189)
-  -o, --offset=INT                  Number of labels to skip on the first sheet (e.g. already used) (default: 0)
-  -d, --num-digits=INT              Number of digits for the ASN, e.g. 000001 (default: 6)
-  -s, --first-asn=INT               First ASN to use, e.g. 100001 (default: 1)
-  -f, --font-size=STR               Fontsize with a unit, e.g. 2mm, 0.4cm (default: 2mm)
-  -q, --qr-size=FLOAT               Size of the QR-Code as percentage of the label hight (default: 0.9)
-  -m, --qr-margin=STR               Margin around the QR-Code with a unit, e.g. 1mm (default: 1mm)
-  --sub-labels-x, --lx=INT          How many labels to put on a phyical label horizontally (default: 1)
-  --sub-labels-y, --ly=INT          How many labels to put on a phyical label vertically (default: 1)
-  --debug                           enable debug mode
-  --position-helper                 enable position helpers, e.g. as cutting guides when using sub labels
-  --bar-width, --bw=INT             Show a colored bar on the right of the label (0 = no bar) (default: 0)
-  --bar-color, --bc=STR             Color of the bar, HEX notation (default: d2dede)
-  --highlight-bar-width, --hw=INT   add a colored highlight bar on the right of the label (0 = no bar) (default: 0)
-  --highlight-bar-color, --hc=STR   Color of the highlight bar, HEX notation (default: d9a4a6)
-  -p, --prefix=STR                  Prefix to the actual ASN number (default: ASN)
+  -l, --labeltype=STR         Type of label, e.g. 4731, get a list of supported labels with --labels (default: 4731)
+  -n, --number=INT            number of labels to generate (default: 189)
+  -o, --offset=INT            Number of labels to skip on the first sheet (e.g. already used) (default: 0)
+  -d, --num-digits=INT        Number of digits for the ASN, e.g. 000001 (default: 6)
+  -s, --first-asn=INT         First ASN to use, e.g. 100001 (default: 1)
+  -f, --font-size=STR         Fontsize with a unit, e.g. 2mm, 0.4cm (default: 2mm)
+  -q, --qr-size=FLOAT         Size of the QR-Code as percentage of the label hight (default: 0.9)
+  -m, --qr-margin=STR         Margin around the QR-Code with a unit, e.g. 1mm (default: 1mm)
+  --sub-labels-x, --lx=INT    How many labels to put on a phyical label horizontally (default: 1)
+  --sub-labels-y, --ly=INT    How many labels to put on a phyical label vertically (default: 1)
+  --debug                     enable debug mode
+  --position-helper           enable position helpers, e.g. as cutting guides when using sub labels
+  --bar-width, --bw=INT       Show a colored bar on the right of the label (0 = no bar) (default: 0)
+  --bar-color, --bc=STR       Color of the bar, HEX notation (default: d2dede)
+  --highlight-bar-width, --hw=INT
+                              add a colored highlight bar on the right of the label (0 = no bar) (default: 0)
+  --highlight-bar-color, --hc=STR
+                              Color of the highlight bar, HEX notation (default: d9a4a6)
+  -p, --prefix=STR            Prefix to the actual ASN number (default: ASN)
+  --page-offset-x, --dx=STR   Print offset of the labels on the page to handle horizontal printer alignment with unit
+                              (e.g. -2mm) (default: 0mm)
+  --page-offset-y, --dy=STR   Print offset of the labels on the page to handle vertical printer alignment with unit (e.g.
+                              -1.5mm) (default: 0mm)
 
 Other actions:
-  -h, --help                        Show the help
-  --labels                          Shows a list of supported labels
-  --version                         Show the version
+  -h, --help                  Show the help
+  --labels                    Shows a list of supported labels
+  --version                   Show the version
 ```
 
 #### Testing your printer settings

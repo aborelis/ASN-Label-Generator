@@ -26,6 +26,7 @@ labelInfo = {
     3044: (2, 11, (32, 10), (2, 2), (1, 1), (66.5 * mm, 120.5 * mm)),
     # 189x 25.4mm x 10mm mini labels
     4731: (7, 27, (25.4 * mm, 10 * mm), (2.5 * mm, 0), (9 * mm, 13.5 * mm), A4),
+    7871: (7, 27, (25.4 * mm, 10 * mm), (2.5 * mm, 0), (9 * mm, 13.5 * mm), A4),
     # 2.6 x 1 address labels
     5160: (3, 10, (187, 72), (11, 0), (14, 36), A4),
     5161: (2, 10, (288, 72), (0, 0), (18, 36), A4),
@@ -48,7 +49,7 @@ labelInfo = {
 
 class AveryLabel:
 
-    def __init__(self, label, **kwargs):
+    def __init__(self, label, pageoffset, **kwargs):
         data = labelInfo[label]
         self.across = data[0]
         self.down = data[1]
@@ -59,6 +60,8 @@ class AveryLabel:
         self.debug = False
         self.pagesize = data[5]
         self.position = 0
+        self.pageoffset = pageoffset
+
         self.__dict__.update(kwargs)
 
     def open(self, filename):
@@ -80,8 +83,8 @@ class AveryLabel:
                 y, x = divmod(x, self.across)
 
         return (
-            self.margins[0] + x * self.labelsep[0],
-            self.pagesize[1] - self.margins[1] - (y + 1) * self.labelsep[1],
+            self.margins[0] + x * self.labelsep[0] + self.pageoffset[0],
+            self.pagesize[1] - self.margins[1] - (y + 1) * self.labelsep[1] - self.pageoffset[1],
         )
 
     def advance(self):
@@ -105,7 +108,7 @@ class AveryLabel:
     # Or, pass a callable and an iterator.  We'll do one label
     # per iteration of the iterator.
 
-    def render(self, thing, count, offset=0, *args):
+    def render(self, thing, count, offset=0, pageshift=(0 * mm, 0 * mm), *args):
         """ render loop"""
         assert callable(thing) or isinstance(thing, str)
         if isinstance(count, Iterator):
@@ -132,6 +135,7 @@ class AveryLabel:
         canv = self.canvas
         for chunk in iterator:
             canv.saveState()
+
             canv.translate(*self.top_left())
             if self.debug:
                 canv.setLineWidth(0.25)
