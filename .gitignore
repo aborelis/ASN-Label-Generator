@@ -3,3 +3,4 @@ venv
 .idea
 /*.pdf
 out/*.pdf
+.DS_Store

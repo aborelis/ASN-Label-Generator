@@ -1,6 +1,6 @@
 from collections.abc import Iterator
 from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import A4, LETTER
 from reportlab.lib.units import mm, cm
 
 # Usage:
@@ -42,6 +42,10 @@ labelInfo = {
     4778: (4, 12, (45.7 * mm, 21.2 * mm), (0.25 * cm, 0), (1.1 * cm, 2 * cm), A4),
     # APLI 100984 40x 52.5x29.7mm
     100984: (4, 10, (52.5 * mm, 29.7 * mm), (0, 0), (0, 0), A4),
+
+    # US Letter labels
+    # 1.75 x 0.5 return address labels US Letter
+    5195: (4, 15, (44.45 * mm, 16.75 *mm), (8 * mm, 0), (7 * mm, 14 * mm), LETTER),
 }
 
 
